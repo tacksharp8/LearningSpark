@@ -1,4 +1,4 @@
-package com.aamend.hadoop.MapReduce;
+package com.spark.learning.examples;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -13,6 +13,11 @@ public class SparkActions {
 
 
 	static public class MeanAcc implements Serializable {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
 		public MeanAcc(Integer acc, Integer count) {
 
@@ -32,6 +37,11 @@ public class SparkActions {
 
 	static Function2<MeanAcc, Integer, MeanAcc> addNewElement = new Function2<MeanAcc, Integer, MeanAcc>() {
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public MeanAcc call(MeanAcc meanAcc, Integer number) {
 			meanAcc.acc += number;
 			meanAcc.count += 1;
@@ -40,6 +50,11 @@ public class SparkActions {
 	};
 
 	static Function2<MeanAcc, MeanAcc, MeanAcc> combineAccummulators  = new Function2<MeanAcc, MeanAcc, MeanAcc>() {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
 		public MeanAcc call(MeanAcc meanAcc1, MeanAcc meanAcc2) {
 			meanAcc1.acc += meanAcc2.acc; 

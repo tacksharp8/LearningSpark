@@ -1,4 +1,4 @@
-package com.aamend.hadoop.MapReduce;
+package com.spark.learning.examples;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;

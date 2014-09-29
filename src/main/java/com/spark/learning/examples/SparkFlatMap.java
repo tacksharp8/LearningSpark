@@ -1,4 +1,4 @@
-package com.aamend.hadoop.MapReduce;
+package com.spark.learning.examples;
 
 import java.util.Arrays;
 
@@ -6,7 +6,6 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function;
 
 
 public class SparkFlatMap {
@@ -31,6 +30,7 @@ public class SparkFlatMap {
 		// Top-level function 
 		
 		// In-line function
+		@SuppressWarnings("serial")
 		JavaRDD<String> individualNumbers = numbers.flatMap(new FlatMapFunction<String,String>() {
 			public Iterable<String> call(String sentence) { return Arrays.asList(sentence.split(" ")); }
 		}

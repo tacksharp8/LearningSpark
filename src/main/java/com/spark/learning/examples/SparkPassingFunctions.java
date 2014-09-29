@@ -1,12 +1,9 @@
-package com.aamend.hadoop.MapReduce;
+package com.spark.learning.examples;
 
 import java.util.Arrays;
-import java.util.List;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.storage.StorageLevel;
 import org.apache.spark.api.java.function.Function;
 
 
@@ -15,6 +12,7 @@ import org.apache.spark.api.java.function.Function;
 
 public class SparkPassingFunctions {
 
+	@SuppressWarnings("serial")
 	static class ContainsWord implements Function<String, Boolean> {
 	public Boolean call(String word) { return word.contains("zero"); }
 	}

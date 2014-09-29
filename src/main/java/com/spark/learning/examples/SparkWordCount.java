@@ -1,12 +1,9 @@
-package com.aamend.hadoop.MapReduce;
+package com.spark.learning.examples;
 
 import java.util.Arrays;
-import java.util.List;
 import java.lang.Iterable;
 
 import scala.Tuple2;
-
-import org.apache.commons.lang.StringUtils;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
@@ -29,15 +26,18 @@ public class SparkWordCount {
 	    // Load our input data.
 	    JavaRDD<String> input = sc.textFile(inputFile);
 	    // Split up into words.
-	    JavaRDD<String> words = input.flatMap(
+	    @SuppressWarnings("serial")
+		JavaRDD<String> words = input.flatMap(
 	      new FlatMapFunction<String, String>() {
 	        public Iterable<String> call(String x) {
 	          return Arrays.asList(x.split(" "));
 	        }});
 	    // Transform into word and count.
-	    JavaPairRDD<String, Integer> counts = words.mapToPair(
+	    @SuppressWarnings("serial")
+		JavaPairRDD<String, Integer> counts = words.mapToPair(
 	      new PairFunction<String, String, Integer>(){
-	        public Tuple2<String, Integer> call(String x){
+	        @SuppressWarnings({ "rawtypes", "unchecked" })
+			public Tuple2<String, Integer> call(String x){
 	          return new Tuple2(x, 1);
 	        }}).reduceByKey(new Function2<Integer, Integer, Integer>(){
 	            public Integer call(Integer x, Integer y){ return x + y;}});

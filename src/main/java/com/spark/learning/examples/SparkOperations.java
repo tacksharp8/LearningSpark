@@ -1,18 +1,15 @@
-package com.aamend.hadoop.MapReduce;
+package com.spark.learning.examples;
 
 import java.util.Arrays;
-import java.util.List;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
-import org.apache.spark.storage.StorageLevel;
-
 import scala.Tuple2;
 
 public class SparkOperations { 
 	
+	@SuppressWarnings("serial")
 	private static class square implements Function<Integer,Integer> {
 		public Integer call(Integer number) { return number*number; }
 		} 
