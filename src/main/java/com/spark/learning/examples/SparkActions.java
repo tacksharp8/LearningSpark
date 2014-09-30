@@ -2,12 +2,16 @@ package com.spark.learning.examples;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.DoubleFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
+import org.apache.spark.api.java.JavaDoubleRDD;
+import org.apache.spark.storage.StorageLevel;
 
 public class SparkActions {
 
@@ -83,6 +87,8 @@ public class SparkActions {
 
 			public Integer call(Integer number1, Integer number2) { return number1 + number2;}
 		});
+		
+		numbers.persist(StorageLevel.MEMORY_ONLY()); // It is used many times  
 
 		displayRDD(numbers,"Numbers");
 		displayRDD(numbersSquared,"Numbers Squared");
@@ -101,7 +107,27 @@ public class SparkActions {
 		average = meanAcc.mean();
 		
 		System.out.println("The average of the numbersSquared RDD elements is:" + average);
-		System.out.println("Hola Mundo23");
+
+		// Another way to compute the average is to create a DoubleRDD and then use their built in function to estimate it
+		@SuppressWarnings("serial")
+		JavaDoubleRDD doubleNumbers = numbers.mapToDouble(new DoubleFunction<Integer>() {
+			public double call(Integer number) {return (double) number*number;} 
+		});
+		
+		System.out.println("The mean of the numbers (squared) RDD using mapToDouble and DoubleFunction is:" + doubleNumbers.mean() + " and their std is : " + doubleNumbers.stdev());
+		System.out.println("Their stats are: " + doubleNumbers.stats());
+		
+		// Test collect to return all the elements in the RDD
+		System.out.println("The list of all the RDD elements as a collection is:");
+		List<Integer> collection = numbersSquared.collect();
+		
+		displayList(collection,"Display collection of all elements of the RDD");
+		
+		System.out.println("The first element of the RDD is: " + numbersSquared.first());
+		
+		// Take a sample from the RDD
+		List<Integer> sampled = numbers.takeSample(false, 3);
+		displayList(sampled,"Sampled RDD of 3 elements");
 
 	}
 
@@ -110,6 +136,19 @@ public class SparkActions {
 		System.out.println(message);
 
 		for (Integer number: RDD.take((int)RDD.count())) {
+			System.out.print(number);
+			System.out.print('-');
+		}
+
+		System.out.println();
+
+	}
+	
+	private static void displayList(List<Integer> list, String message ) {
+
+		System.out.println(message);
+
+		for (Integer number: list) {
 			System.out.print(number);
 			System.out.print('-');
 		}
