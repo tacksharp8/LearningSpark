@@ -1,8 +1,6 @@
 package com.spark.learning.examples;
 
 import java.util.Arrays;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 
 import org.apache.spark.SparkConf;
@@ -10,13 +8,9 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
 
 import com.google.common.base.Optional;
-import com.spark.learning.examples.SparkCombineByKey.MeanAcc;
-
 import scala.Tuple2;
 
 public class SparkGrouping {
