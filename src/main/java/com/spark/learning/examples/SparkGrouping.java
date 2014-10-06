@@ -3,6 +3,7 @@ package com.spark.learning.examples;
 import java.util.Arrays;
 import java.util.Random;
 
+import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -11,6 +12,7 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 
 import com.google.common.base.Optional;
+
 import scala.Tuple2;
 
 public class SparkGrouping {
@@ -56,6 +58,26 @@ public class SparkGrouping {
 		for (Tuple2<Integer,Tuple2<String, Optional<String>>> tuple: leftOuterJoin.take(20)) {
 			 System.out.println("(" + tuple._1 + ", <" + tuple._2._1 + " - " + tuple._2._2.get() + ">)");
 		};
+		
+		
+		System.out.println("Sort JavaPairRDD in descendent order and display its first 10 elements");
+
+		for (Tuple2<Integer,String> tuple: pairRDD1.sortByKey(false).take(10)) {
+			 System.out.println("<" + tuple._1 + ", " + tuple._2 + ">");
+		};
+		
+		System.out.println("Test cogroup function with 2 JavaPairRDD. Show first 15 elements");
+
+		for (Tuple2<Integer,Tuple2<Iterable<String>, Iterable<String>>> tuple: pairRDD1.sample(true, 0.1).cogroup(pairRDD2.sample(true, 0.1)).take(15)) {
+			 System.out.println("<" + tuple._1 + ", " + tuple._2.toString() + ">");
+		};
+		
+		// Hash partition the data
+		
+		JavaPairRDD<Integer, String> partitionedPairRDD  = pairRDD1.partitionBy(new HashPartitioner(5));
+		
+		partitionedPairRDD.count();
+		
 		
 	}
 	
