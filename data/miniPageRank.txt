@@ -1,0 +1,8 @@
+yahoo,yahoo.news cnn bbc google blogger altavista
+cnn,bbc elTiempo bbc.sports bbc.news yahoo
+bbc,bbc.news cnn cbs elPais google bing uno dos tres cuatro cinco seis siete a b c d e f g h i j k l
+bbc.news,bbc cnn cbs elPais elTiempo google bing
+ilSecolo,cnn bbc facebook
+facebook,yahoo bbc cnn ilSecolo google
+google,bbc cnn cbs elPais google
+test,abc
