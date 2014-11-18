@@ -12,7 +12,7 @@ public class SparkWorkWithRDDs {
 
 	public static void main(String[] args) {
 
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("My App");
+		SparkConf conf = new SparkConf().setAppName("Spark Work with RDDs");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		
 		String oddNumbersArray[] = {"uno","tres","cinco"};

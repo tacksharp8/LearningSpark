@@ -9,7 +9,7 @@ public class sparkTest1 {
 
 	public static void main(String[] args) {
 
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("My App");
+		SparkConf conf = new SparkConf().setAppName("Spark Test 1");
 		JavaSparkContext sc = new JavaSparkContext(conf); 
 		JavaRDD<String> lines = sc.textFile("data/textFile.txt");
 		
@@ -23,7 +23,6 @@ public class sparkTest1 {
 		
 		System.out.println("The number of lines with the word Spark is: " + sparkLines.count());
  
-
 	}
 
 }

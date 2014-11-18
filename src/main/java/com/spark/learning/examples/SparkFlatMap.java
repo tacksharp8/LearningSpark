@@ -12,21 +12,21 @@ public class SparkFlatMap {
 	
 	public static void main(String[] args) {
 
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("My App");
+		SparkConf conf = new SparkConf().setAppName("SparkFlatMap");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		
 		String[] sentences = {"uno dos tres", "one two three", "uno due tre", "eins zwei drei"};
 		JavaRDD<String> numbers = sc.parallelize(Arrays.asList(sentences));
 				
-		System.out.println("There are "  + numbers.count() + " numbers, and these are:");
+		System.out.println("There are "  + numbers.count() + " sentences, and these are:");
 		
 		for (String number: numbers.take((int)numbers.count())) {
 			System.out.print(number);
 			System.out.print('-');
 		}
 		
-		System.out.println();
-		
+		System.out.println();  
+
 		// Top-level function 
 		
 		// In-line function

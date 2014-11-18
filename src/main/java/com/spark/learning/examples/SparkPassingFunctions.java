@@ -19,7 +19,7 @@ public class SparkPassingFunctions {
 			
 	public static void main(String[] args) {
 		
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("My App");
+		SparkConf conf = new SparkConf().setAppName("Spark Passing Functions");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		
 		String numbersArray[] = {"zero", "uno", "tres", "cinco", "zero", "siete", "zero", "zero"};

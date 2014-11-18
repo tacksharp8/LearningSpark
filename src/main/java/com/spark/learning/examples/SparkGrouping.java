@@ -19,7 +19,7 @@ public class SparkGrouping {
 	
 	public static void main(String[] args) {
 
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("My App");
+		SparkConf conf = new SparkConf().setAppName("Spark Grouping");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
 		JavaRDD<String> input = sc.textFile("data/textFile.txt");

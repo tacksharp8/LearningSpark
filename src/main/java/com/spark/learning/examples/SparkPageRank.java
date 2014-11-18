@@ -22,7 +22,7 @@ public class SparkPageRank {
 	@SuppressWarnings("serial")
 	public static void main(String[] args) {
 
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("PageRank");
+		SparkConf conf = new SparkConf().setAppName("Spark PageRank");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
 		JavaRDD<String> input = sc.textFile("data/miniPageRank.txt");

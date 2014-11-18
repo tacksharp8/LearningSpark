@@ -68,7 +68,7 @@ public class SparkActions {
 
 	public static void main(String[] args) {
 
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("My App");
+		SparkConf conf = new SparkConf().setAppName("Spark Actions");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
 		JavaRDD<Integer> numbers = sc.parallelize(Arrays.asList(1,2,3,4,5,6,7,8,9));

@@ -20,7 +20,7 @@ public class SparkSequenceFile {
 	public static void main(String[] args) {
 
 	    // Create a Java Spark Context. 
-	    SparkConf conf = new SparkConf().setAppName("wordCount").setMaster("local");
+	    SparkConf conf = new SparkConf().setAppName("Spark Sequence File");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
 		// get arguments from the input	
